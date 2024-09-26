@@ -1,12 +1,95 @@
 ﻿<Window x:Class="Fogadások.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Fogadások"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Betting App" Height="450" Width="800">
 
+    <Grid Name="mainGrid" Margin="10,10,10,10">
+        <!-- Fő felület -->
+        <Grid Name="eventGrid" Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <!-- Felső sor -->
+            <Button Grid.Row="0" Grid.Column="3" Content="Befizetés"></Button>
+            <Label Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">Balance:</Label>
+            <Label Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" x:Name="lbBalance"></Label>
+            <Image Grid.Row="0" Grid.Column="1"></Image>
+            <Button Grid.Row="0" Grid.Column="0" Content="Profil" Click="ProfileButton_Click"></Button>
+
+            <!-- Sport választás -->
+            <UniformGrid x:Name="buttonGrid" Grid.Row="1" Grid.ColumnSpan="4" Columns="4">
+                <Button Content="Sport választás" Width="100" Height="30"/>
+            </UniformGrid>
+
+            <!-- Élő top választások -->
+            <Label Grid.Row="2" Grid.Column="3">Top Választások</Label>
+
+            <!-- Fogadások mező -->
+            <Grid Grid.Row="2" Grid.ColumnSpan="3">
+                <UniformGrid x:Name="buttonFogadasok" Grid.Row="1" Grid.ColumnSpan="4" Columns="4">
+                    <Label Content="Real Madrid - Barcelona"/>
+                    <Button Height="40px" Width="60px" Content="Hazai &#xa; 2x" VerticalAlignment="Top"/>
+                    <Button Height="40px" Width="60px" Content="Döntetlen &#xa; 2x" VerticalAlignment="Top"/>
+                    <Button Height="40px" Width="60px" Content="Vendég &#xa; 2x" VerticalAlignment="Top"/>
+                </UniformGrid>
+            </Grid>
+        </Grid>
+
+        <!-- Bejelentkezési felület -->
+        <Grid Name="loginGrid" Visibility="Collapsed">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label Content="Bejelentkezés"/>
+
+                <!-- Felhasználónév mező ikonnal -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Source="Képek/user.png" Width="24" Height="24" VerticalAlignment="Center" Margin="5"/>
+                    <TextBox Name="usernameTextBox" Width="200" Height="30" />
+                </StackPanel>
+
+                <!-- Jelszó mező ikonnal -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Source="Képek/padlock.png" Width="24" Height="24" VerticalAlignment="Center" Margin="5"/>
+                    <PasswordBox Name="passwordBox" Width="200" Height="30" />
+                </StackPanel>
+
+                <Button Content="Bejelentkezés" Width="100" Height="30" Click="LoginButton_Click"/>
+
+                <!-- Kattintható Regisztráció szöveg -->
+                <TextBlock HorizontalAlignment="Center" Margin="10">
+                    <Hyperlink Click="RegistrationLink_Click">Regisztráció</Hyperlink>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+
+        <!-- Regisztrációs felület -->
+        <Grid Name="registrationGrid" Visibility="Collapsed">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <Label Content="Regisztráció"/>
+
+                <!-- Felhasználónév regisztráció mező -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Source="Képek/user.png" Width="24" Height="24" VerticalAlignment="Center" Margin="5"/>
+                    <TextBox Name="regUsernameTextBox" Width="200" Height="30" />
+                </StackPanel>
+
+                <!-- Jelszó regisztráció mező -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Source="Képek/padlock.png" Width="24" Height="24" VerticalAlignment="Center" Margin="5"/>
+                    <PasswordBox Name="regPasswordBox" Width="200" Height="30" />
+                </StackPanel>
+
+                <!-- Regisztráció gomb -->
+                <Button Content="Regisztráció" Width="100" Height="30" Click="RegisterButton_Click"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
