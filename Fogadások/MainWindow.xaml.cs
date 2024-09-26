@@ -1,17 +1,20 @@
 ﻿using Fogadások.MVVM.ViewModel;
+using Fogadasok.MVVM.ViewModel;
 using System.Windows;
 
 namespace Fogadások
 {
     public partial class MainWindow : Window
     {
-        private MainViewModel _viewModel;
 
+        private MainViewModel _viewModel;
         public MainWindow()
         {
             InitializeComponent();
+
+            // A ViewModel példányosítása és a DataContext beállítása
             _viewModel = new MainViewModel();
-            DataContext = _viewModel;
+
         }
 
         // Profil gomb megnyomása (Bejelentkezés megjelenítése)

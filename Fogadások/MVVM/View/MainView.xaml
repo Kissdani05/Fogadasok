@@ -8,7 +8,82 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainView">
 
-    <Grid>
-        
+    <Grid Name="mainGrid" Margin="10,10,10,10">
+        <!-- Fő felület -->
+        <Grid Name="eventGrid" Visibility="{Binding EventGridVisibility}">
+            <!-- Grid.RowDefinitions és Grid.ColumnDefinitions ugyanaz marad -->
+
+            <!-- Felső sor -->
+            <Button Grid.Row="0" Grid.Column="3" Content="Befizetés"></Button>
+            <Label Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">Balance:</Label>
+            <Label Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Content="{Binding CurrentBettor.Balance}"/>
+            <Image Grid.Row="0" Grid.Column="1"></Image>
+            <Button Grid.Row="0" Grid.Column="0" Content="Profil" Command="{Binding ProfileCommand}"/>
+
+            <!-- Sport választás és további elemek ugyanazok maradnak -->
+
+            <!-- Élő top választások -->
+            <Label Grid.Row="2" Grid.Column="3">Top Választások</Label>
+
+            <!-- Fogadások mező -->
+            <Grid Grid.Row="2" Grid.ColumnSpan="3">
+                <ItemsControl ItemsSource="{Binding Events}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding EventName}" Width="150"/>
+                                <Button Height="40px" Width="60px" Content="{Binding OddsHome}" />
+                                <Button Height="40px" Width="60px" Content="{Binding OddsDraw}" />
+                                <Button Height="40px" Width="60px" Content="{Binding OddsAway}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </Grid>
+
+        <!-- Bejelentkezési felület -->
+        <Grid Name="loginGrid" Visibility="{Binding LoginGridVisibility}">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label Content="Bejelentkezés"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Source="//Képek/user.png" Width="24" Height="24" VerticalAlignment="Center" Margin="5"/>
+                    <TextBox Text="{Binding Username}" Width="200" Height="30" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Source="//Képek/padlock.png" Width="24" Height="24" VerticalAlignment="Center" Margin="5"/>
+                    <PasswordBox Width="200" Height="30" PasswordChanged="PasswordBox_PasswordChanged"/>
+                </StackPanel>
+
+                <Button Content="Bejelentkezés" Width="100" Height="30" Command="{Binding LoginCommand}"/>
+
+                <TextBlock HorizontalAlignment="Center" Margin="10">
+                <Hyperlink Command="{Binding RegistrationLinkCommand}">Regisztráció</Hyperlink>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+
+        <!-- Regisztrációs felület -->
+        <Grid Name="registrationGrid" Visibility="{Binding RegistrationGridVisibility}">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <Label Content="Regisztráció"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Source="//Képek/user.png" Width="24" Height="24" VerticalAlignment="Center" Margin="5"/>
+                    <TextBox Text="{Binding RegUsername}" Width="200" Height="30" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Source="//Képek/padlock.png" Width="24" Height="24" VerticalAlignment="Center" Margin="5"/>
+                    <PasswordBox Width="200" Height="30" PasswordChanged="PasswordBox_PasswordChanged"/>
+                </StackPanel>
+
+                <Button Content="Regisztráció" Width="100" Height="30" Command="{Binding RegisterCommand}"/>
+            </StackPanel>
+        </Grid>
     </Grid>
+
+
 </Page>
